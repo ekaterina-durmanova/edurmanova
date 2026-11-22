@@ -41,41 +41,72 @@
             background-color: var(--bg-warm); 
         }
 
-        /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ --- */
+        /* --- ОПТИМИЗИРОВАННЫЕ АНИМАЦИИ --- */
+        @-webkit-keyframes fadeInDown {
+            from { opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+
+        @-webkit-keyframes fadeInUp {
+            from { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+
+        @-webkit-keyframes fadeInRight {
+            from { opacity: 0; -webkit-transform: translateX(30px); transform: translateX(30px); }
+            to { opacity: 1; -webkit-transform: translateX(0); transform: translateX(0); }
         }
         @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; -webkit-transform: translateX(30px); transform: translateX(30px); }
+            to { opacity: 1; -webkit-transform: translateX(0); transform: translateX(0); }
+        }
+
+        @-webkit-keyframes fadeInSimple {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes fadeInSimple {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Анимация курсора для печатной машинки */
+        @-webkit-keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
         @keyframes blink {
             from, to { opacity: 1; }
             50% { opacity: 0; }
         }
 
-        /* Применение анимаций */
-        header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
-        .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; }
-        .hero-image-col { animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
-        .features-bar { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both; }
-        .bg-overlay { animation: fadeInSimple 1.5s ease-out both; }
+        /* Включаем аппаратное ускорение для всех анимируемых элементов */
+        header, .hero-text-col, .hero-image-col, .features-bar, .bg-overlay {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform, opacity;
+        }
 
-        /* Отключение анимаций для тех, кто предпочитает меньше движения */
+        header { -webkit-animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) both; animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
+        .hero-text-col { -webkit-animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; }
+        .hero-image-col { -webkit-animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
+        .features-bar { -webkit-animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both; animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both; }
+        .bg-overlay { -webkit-animation: fadeInSimple 1.5s ease-out both; animation: fadeInSimple 1.5s ease-out both; }
+
         @media (prefers-reduced-motion: reduce) {
             header, .hero-text-col, .hero-image-col, .features-bar, .bg-overlay {
+                -webkit-animation: none !important;
                 animation: none !important;
+                will-change: auto;
             }
         }
         /* ------------------------------- */
@@ -131,6 +162,7 @@
             text-transform: uppercase; 
             letter-spacing: 1px;
             -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale;
         }
         nav a:hover { color: var(--tiffany-main); } 
 
@@ -145,9 +177,9 @@
             width: 50px; height: 50px;
             background-color: var(--text-dark); color: var(--bg-warm);
             border-radius: 50%; font-size: 18px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s, -webkit-transform 0.3s, transform 0.3s;
         }
-        .header-cta:hover .btn-circle { background-color: var(--tiffany-dark); transform: scale(1.05); }
+        .header-cta:hover .btn-circle { background-color: var(--tiffany-dark); -webkit-transform: scale(1.05); transform: scale(1.05); }
 
         /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
         .hero {
@@ -161,7 +193,6 @@
             overflow: hidden;
         }
 
-        /* ИЗМЕНЕНО: top 12%, убран transform и старая анимация */
         .hero-bg-text {
             position: absolute;
             top: 12%;
@@ -178,17 +209,19 @@
             opacity: 0.85; 
             pointer-events: none;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Стили для курсора печатной машинки */
         .cursor {
             display: inline-block;
             width: 4px;
             height: 0.8em;
             background-color: var(--text-dark);
+            -webkit-animation: blink 0.75s step-end infinite;
             animation: blink 0.75s step-end infinite;
             vertical-align: middle;
             margin-left: 5px;
+            will-change: opacity;
         }
 
         /* Левая колонка с текстом */
@@ -284,6 +317,7 @@
             font-family: var(--font-display); font-size: 42px; color: var(--text-dark);
             text-align: center; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 1px;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* --- ОБО МНЕ --- */
@@ -379,20 +413,24 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
             border-top: 3px solid var(--tiffany-main);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: -webkit-transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease-out;
             opacity: 0; 
+            -webkit-transform: translateY(30px);
             transform: translateY(30px);
             display: flex;
             flex-direction: column;
+            will-change: transform, opacity;
         }
 
         .service-card.visible { 
             opacity: 1; 
+            -webkit-transform: translateY(0); 
             transform: translateY(0); 
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
         }
         
         .service-card:hover { 
+            -webkit-transform: translateY(-5px); 
             transform: translateY(-5px); 
             box-shadow: 0 15px 30px rgba(0, 123, 119, 0.1);
         }
@@ -472,11 +510,15 @@
             max-width: 450px;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            -webkit-transform: translateY(20px);
             transform: translateY(20px);
-            transition: transform 0.3s ease;
+            transition: -webkit-transform 0.3s ease, transform 0.3s ease;
         }
 
-        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-overlay.active .modal-content { 
+            -webkit-transform: translateY(0); 
+            transform: translateY(0); 
+        }
 
         .close-btn {
             position: absolute; top: 15px; right: 20px;
@@ -557,20 +599,17 @@
         .form-success { color: #2e7d32; background-color: #edf7ed; border: 1px solid #c3e6cb; }
 
         /* --- АДАПТИВНОСТЬ --- */
-        
-        /* НОВОЕ: Плавное уменьшение шрифта до 1300px, чтобы не заезжал на фото */
         @media (max-width: 1300px) {
             .hero-bg-text { font-size: clamp(35px, 6vw, 100px); }
         }
 
         @media (max-width: 1024px) {
-            .hero-bg-text { font-size: clamp(30px, 5.5vw, 75px); } /* Уменьшено для 1024 */
+            .hero-bg-text { font-size: clamp(30px, 5.5vw, 75px); } 
             .portrait-wrapper { max-width: 320px; }
             .hero-text-block { padding: 25px; }
             .header-contacts { display: none; }
         }
 
-        /* МОБИЛЬНАЯ ВЕРСИЯ (до 900px) */
         @media (max-width: 900px) {
             .hero { 
                 display: flex;
@@ -582,6 +621,7 @@
             .hero-bg-text { 
                 position: relative; 
                 top: auto; left: auto; 
+                -webkit-transform: none; 
                 transform: none; 
                 font-size: 12vw; 
                 letter-spacing: 1px; 
@@ -591,6 +631,7 @@
                 text-align: center; 
                 order: 1; 
                 word-wrap: break-word;
+                will-change: auto;
             }
 
             .hero-text-col { 
@@ -652,11 +693,9 @@
 </head>
 <body>
 
-    <!-- ФИКС ФОНА ДЛЯ SAFARI -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <!-- ШАПКА -->
     <header>
         <nav>
             <ul>
@@ -678,15 +717,12 @@
         </div>
     </header>
 
-    <!-- ГЛАВНЫЙ ЭКРАН (GRID) -->
     <main class="hero">
-        <!-- Подготовлены контейнеры для JS печатной машинки -->
         <div class="hero-bg-text" aria-label="EKATERINA DURMANOVA">
             <span id="typed-line1"></span><br>
             <span id="typed-line2"></span>
         </div>
         
-        <!-- Левая колонка (на мобильных Order: 2) -->
         <div class="hero-text-col">
             <div class="hero-text-block">
                 <p>Эксперт по международному и корпоративному праву, трансграничным спорам и защите интеллектуальной собственности. Продюсер по правам.</p>
@@ -697,7 +733,6 @@
             </div>
         </div>
 
-        <!-- Правая колонка (на мобильных Order: 3) -->
         <div class="hero-image-col">
             <div class="portrait-wrapper">
                 <img src="my-photo.png" alt="Екатерина Дурманова">
@@ -712,7 +747,6 @@
         </div>
     </main>
 
-    <!-- СЕКЦИЯ: ОБО МНЕ -->
     <section id="about" class="section-container">
         <h2 class="section-title">Обо мне</h2>
         <div class="about-grid">
@@ -739,7 +773,6 @@
         </div>
     </section>
 
-    <!-- СЕКЦИЯ: УСЛУГИ -->
     <section id="services" class="section-container">
         <h2 class="section-title">Виды услуг</h2>
         <div class="services-grid">
@@ -787,7 +820,6 @@
         </div>
     </section>
 
-    <!-- ПОДВАЛ / КОНТАКТЫ -->
     <footer id="contacts">
         <h3>Нужна юридическая помощь?</h3>
         <p>Запишитесь на первичную консультацию, чтобы обсудить вашу ситуацию.</p>
@@ -799,7 +831,6 @@
         <p><a href="mailto:info@durmanova-law.ru" style="font-size: 16px; opacity: 0.8;">info@durmanova-law.ru</a></p>
     </footer>
 
-    <!-- МОДАЛЬНОЕ ОКНО С ФОРМОЙ -->
     <div id="consultation-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -828,45 +859,55 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- 1. Эффект печатной машинки для имени ---
+            // --- 1. Эффект печатной машинки (с ожиданием загрузки шрифтов) ---
             const line1 = "EKATERINA";
             const line2 = "DURMANOVA";
             const el1 = document.getElementById('typed-line1');
             const el2 = document.getElementById('typed-line2');
             const cursor = '<span class="cursor"></span>';
             
-            // Проверка на доступность (отключение анимации для тех, кто её не любит)
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            if (prefersReducedMotion) {
-                el1.innerHTML = line1;
-                el2.innerHTML = line2;
-            } else {
-                let i = 0;
-                function typeLine1() {
-                    if (i < line1.length) {
-                        el1.innerHTML = line1.substring(0, i + 1) + cursor;
-                        i++;
-                        setTimeout(typeLine1, 100); // Скорость печати (мс)
-                    } else {
-                        el1.innerHTML = line1; // Убираем курсор с первой строки
-                        setTimeout(typeLine2, 200); // Пауза перед второй строкой
+            function startTypewriter() {
+                if (prefersReducedMotion) {
+                    el1.innerHTML = line1;
+                    el2.innerHTML = line2;
+                } else {
+                    let i = 0;
+                    function typeLine1() {
+                        if (i < line1.length) {
+                            el1.innerHTML = line1.substring(0, i + 1) + cursor;
+                            i++;
+                            setTimeout(typeLine1, 100);
+                        } else {
+                            el1.innerHTML = line1; 
+                            setTimeout(typeLine2, 200);
+                        }
                     }
-                }
 
-                let j = 0;
-                function typeLine2() {
-                    if (j < line2.length) {
-                        el2.innerHTML = line2.substring(0, j + 1) + cursor;
-                        j++;
-                        setTimeout(typeLine2, 100);
-                    } else {
-                        el2.innerHTML = line2 + cursor; // Оставляем курсор мигать в конце
+                    let j = 0;
+                    function typeLine2() {
+                        if (j < line2.length) {
+                            el2.innerHTML = line2.substring(0, j + 1) + cursor;
+                            j++;
+                            setTimeout(typeLine2, 100);
+                        } else {
+                            el2.innerHTML = line2 + cursor; 
+                        }
                     }
+                    
+                    setTimeout(typeLine1, 300);
                 }
-                
-                // Запуск с небольшой задержкой после загрузки
-                setTimeout(typeLine1, 400);
+            }
+
+            // Ждем полной загрузки шрифтов, чтобы на Mac не было "прыжков" текста
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(() => {
+                    startTypewriter();
+                });
+            } else {
+                // Фоллбэк для старых браузеров
+                setTimeout(startTypewriter, 500); 
             }
             // ----------------------------------------------
 
