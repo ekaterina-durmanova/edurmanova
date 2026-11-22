@@ -6,19 +6,18 @@
     <title>Екатерина Дурманова | Юрист по международному и корпоративному праву</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* Новая палитра со скриншота */
-            --text-dark: #2C2C2C;      /* Глубокий графитовый */
-            --text-light: #666666;     /* Серый для описаний */
-            --accent: #B89C69;         /* Благородное золото/беж */
-            --accent-hover: #a38958;   /* Золото темнее */
-            --bg-warm: #F8F6EF;        /* Кремовый фон */
+            --text-dark: #1D2A40;      
+            --text-light: #3B4A5A;     
+            --accent: #C1A262;         
+            --accent-hover: #A88B50;   
+            --bg-warm: #F8F5EE;        
             --white: #ffffff;
-            --navy: #1C2B3B;           /* Темно-синий из логотипа (для акцентов) */
+            --navy: #1D2A40;           
             
             --font-main: 'Cormorant Garamond', serif;
             --font-display: 'Cormorant Garamond', serif; 
@@ -35,52 +34,36 @@
             position: relative;
             min-height: 100vh;
             background-color: var(--bg-warm); 
-            font-size: 18px; /* Базовый шрифт чуть больше из-за тонкого начертания */
+            font-size: 19px; 
+            font-weight: 400; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInSimple {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        /* Новая анимация для текста: плавное появление с легким увеличением */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes textReveal {
             from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 0.9; transform: scale(1) translateY(0); }
+            to { opacity: 0.95; transform: scale(1) translateY(0); }
         }
 
-        /* Оптимизация для Safari и Mac */
-        header, .hero-text-col, .hero-image-col, .features-bar, .bg-overlay {
+        header, .hero-text-col, .hero-image-col, .features-bar {
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
-            will-change: transform, opacity;
         }
 
         header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
         .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; }
         .hero-image-col { animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
         .features-bar { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both; }
-        .bg-overlay { animation: fadeInSimple 1.5s ease-out both; }
         .hero-bg-text { animation: textReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both; }
 
         @media (prefers-reduced-motion: reduce) {
-            header, .hero-text-col, .hero-image-col, .features-bar, .bg-overlay, .hero-bg-text {
-                animation: none !important;
-            }
+            header, .hero-text-col, .hero-image-col, .features-bar, .hero-bg-text { animation: none !important; }
         }
 
         /* ФОН ИНТЕРЬЕРА */
@@ -91,76 +74,108 @@
             background-image: url('interior.jpg');
             background-size: cover;
             background-position: center;
-            z-index: -2;
-        }
-
-        /* Закрываем фон кремовым цветом, чтобы соответствовать стилю */
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(248, 246, 239, 0.95) 0%, rgba(248, 246, 239, 0.85) 100%);
             z-index: -1;
         }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        section[id], footer[id] { scroll-margin-top: 120px; }
+        section[id], footer[id] { scroll-margin-top: 80px; }
 
         /* --- ШАПКА --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px; 
+            padding: 15px 60px; 
             position: -webkit-sticky; 
             position: sticky;
             top: 0;
             z-index: 100;
-            background-color: rgba(248, 246, 239, 0.9); 
+            background-color: transparent; 
+            transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+            color: var(--bg-warm);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03); 
+            box-shadow: 0 4px 20px rgba(29, 42, 64, 0.05); 
+            padding: 10px 60px; 
+            color: var(--text-dark);
         }
 
-        /* Стили для логотипа */
+        .logo {
+            display: block;
+            border-radius: 4px;
+            overflow: hidden;
+            line-height: 0; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
         .logo img {
-            height: 60px; /* Подгони под свой логотип */
+            height: 50px; 
             width: auto;
             display: block;
+            transition: height 0.4s ease;
+        }
+        
+        header.scrolled .logo img {
+            height: 40px;
         }
 
-        nav ul { display: flex; gap: 45px; }
+        nav ul { display: flex; gap: 40px; }
         nav a { 
             transition: color 0.3s; 
-            font-weight: 500;
+            font-weight: 600; 
             font-size: 18px; 
             text-transform: uppercase; 
             letter-spacing: 1.5px;
-            -webkit-font-smoothing: antialiased; 
+            color: inherit; 
         }
         nav a:hover { color: var(--accent); } 
 
         .header-contacts { display: flex; gap: 40px; align-items: center; }
         .contact-item { display: flex; flex-direction: column; }
-        .contact-item a { font-weight: 500; font-size: 18px; letter-spacing: 0.5px; }
+        .contact-item a { 
+            font-weight: 500; 
+            font-size: 18px; 
+            letter-spacing: 0.5px;
+            color: inherit;
+        }
 
-        .header-cta { display: flex; align-items: center; gap: 15px; font-size: 15px; font-weight: 500; text-align: right; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;}
+        .header-cta { 
+            display: flex; align-items: center; gap: 15px; 
+            font-size: 16px;
+            font-weight: 600; text-align: right; cursor: pointer; 
+            text-transform: uppercase; letter-spacing: 1px;
+            color: inherit;
+        }
         
         .btn-circle {
             display: flex; align-items: center; justify-content: center;
-            width: 50px; height: 50px;
-            background-color: var(--text-dark); color: var(--bg-warm);
+            width: 45px; height: 45px;
+            background-color: var(--bg-warm); color: var(--navy);
             border-radius: 50%; font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s, transform 0.3s, color 0.3s;
         }
-        .header-cta:hover .btn-circle { background-color: var(--accent); transform: scale(1.05); }
+        
+        header.scrolled .btn-circle {
+            background-color: var(--navy); 
+            color: var(--white);
+        }
+        
+        .header-cta:hover .btn-circle { background-color: var(--accent); color: var(--white); }
 
         /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
         .hero {
             position: relative;
-            min-height: calc(100vh - 100px); 
+            min-height: calc(100vh - 80px); 
             display: grid;
             grid-template-columns: 1fr 1fr; 
             align-items: center;
@@ -171,53 +186,74 @@
 
         .hero-bg-text {
             position: absolute;
-            top: 15%;
+            top: 4%;
             left: 5%; 
             font-family: var(--font-display);
-            font-size: clamp(50px, 8vw, 150px); 
+            font-size: clamp(45px, 7vw, 130px); 
             line-height: 0.85;
-            color: var(--text-dark);
+            color: var(--bg-warm); 
             text-transform: uppercase; 
             letter-spacing: 2px;
             z-index: 1;
             text-align: left; 
             white-space: nowrap;
-            opacity: 0; /* Изначально скрыт, анимация сделает его видимым */
+            opacity: 0; 
             pointer-events: none;
-            -webkit-font-smoothing: antialiased;
+            font-weight: 600;
         }
 
-        /* Левая колонка с текстом */
         .hero-text-col {
             position: relative;
             z-index: 3;
             align-self: end; 
             padding-bottom: 40px;
-            max-width: 450px;
+            max-width: 380px; 
         }
 
-        /* Убрал яркий градиент, сделал элегантный прозрачный фон с рамкой */
         .hero-text-block {
-            background: rgba(255, 255, 255, 0.4);
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            padding: 30px 35px; 
             border-radius: 4px;
-            border: 1px solid var(--accent);
-            border-left: 4px solid var(--accent); 
+            border: 1px solid rgba(193, 162, 98, 0.5);
+            border-left: 4px solid var(--navy); 
+            box-shadow: 0 10px 30px rgba(29, 42, 64, 0.05);
         }
 
-        .hero-text-block p { font-size: 20px; line-height: 1.5; color: var(--text-dark); font-weight: 400; font-style: italic; }
+        .hero-text-block p { 
+            font-size: 19px; 
+            line-height: 1.35; 
+            color: var(--text-dark); 
+            font-weight: 500; 
+            font-style: italic; 
+            margin-bottom: 12px;
+        }
+        
+        .hero-text-block p:last-of-type {
+            margin-bottom: 0;
+        }
 
-        .hero-content-btn { display: flex; align-items: center; gap: 20px; margin-top: 30px; font-size: 18px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;}
+        .hero-content-btn { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-top: 20px; 
+            font-size: 17px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            color: var(--navy);
+        }
 
         .btn-outline {
             display: flex; align-items: center; justify-content: center;
-            width: 50px; height: 50px;
-            border: 1px solid var(--text-dark); border-radius: 50%;
-            font-size: 16px; transition: all 0.3s;
+            width: 45px; height: 45px; 
+            border: 1px solid var(--navy); border-radius: 50%;
+            font-size: 15px; transition: all 0.3s;
         }
-        .btn-outline:hover { background-color: var(--accent); border-color: var(--accent); color: var(--white); }
+        .btn-outline:hover { background-color: var(--navy); border-color: var(--navy); color: var(--white); }
 
-        /* Правая колонка с портретом */
         .hero-image-col {
             position: relative;
             z-index: 2;
@@ -226,13 +262,12 @@
             align-self: center;
         }
 
-        /* УБРАЛ РАМКУ, ФОН И ПАДДИНГИ У ФОТО */
         .portrait-wrapper {
             width: 100%; 
             max-width: 420px; 
             border-radius: 8px; 
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 20px 50px rgba(29, 42, 64, 0.2); 
         }
 
         .portrait-wrapper img {
@@ -247,27 +282,28 @@
         /* --- ПЛАШКА ПРЕИМУЩЕСТВ --- */
         .features-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background-color: var(--bg-warm);
+            background-color: rgba(255, 255, 255, 0.85); 
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             padding: 25px 5%;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 10; 
-            border-top: 1px solid rgba(184, 156, 105, 0.3);
+            border-top: 1px solid rgba(193, 162, 98, 0.3);
         }
 
         .feature-item { 
-            font-size: 18px; 
-            font-weight: 500; 
-            color: var(--text-dark);
+            font-size: 19px; 
+            font-weight: 600; 
+            color: var(--navy);
             display: flex;
             align-items: center;
             gap: 10px;
             letter-spacing: 0.5px;
         }
-        /* Заменил "-" на "⟶" */
         .feature-item::before {
             content: '⟶';
             color: var(--accent);
-            font-family: sans-serif; /* Стрелка лучше смотрится в sans-serif */
+            font-family: sans-serif;
             font-weight: 300;
             font-size: 20px;
         }
@@ -275,22 +311,45 @@
         /* --- СЕКЦИИ --- */
         .section-container {
             position: relative; z-index: 5; padding: 100px 40px;
-            background-color: var(--bg-warm); 
-            border-top: 1px solid rgba(184, 156, 105, 0.15);
+            background-color: var(--white); 
+            border-top: 1px solid rgba(193, 162, 98, 0.15);
         }
 
         .section-title {
             font-family: var(--font-display); 
             font-size: 54px; 
-            color: var(--text-dark);
+            color: var(--navy);
             text-align: center; 
             margin-bottom: 60px; 
             text-transform: uppercase; 
             letter-spacing: 3px;
-            font-weight: 400;
+            font-weight: 600; 
         }
 
-        /* --- ОБО МНЕ --- */
+        /* --- СЕКЦИЯ: СЛОГАН --- */
+        .slogan-section {
+            position: relative;
+            z-index: 5;
+            padding: 100px 20px;
+            background-color: var(--navy); 
+            text-align: center;
+            border-top: 1px solid rgba(193, 162, 98, 0.3);
+            border-bottom: 1px solid rgba(193, 162, 98, 0.3);
+        }
+
+        .slogan-text {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4.5vw, 64px);
+            color: var(--bg-warm);
+            font-weight: 500;
+            letter-spacing: 2px;
+            line-height: 1.3;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* --- ПРОФИЛЬ --- */
         .about-grid { 
             display: grid; 
             grid-template-columns: 1.2fr 0.8fr; 
@@ -303,26 +362,24 @@
         .about-main h3 { 
             font-size: 36px; 
             margin-bottom: 25px; 
-            font-weight: 500; 
-            color: var(--text-dark);
+            font-weight: 600; 
+            color: var(--navy);
             letter-spacing: 1px;
         }
         
         .about-lead {
-            font-size: 22px;
+            font-size: 24px;
             line-height: 1.6;
-            font-weight: 400;
+            font-weight: 500;
             font-style: italic;
             color: var(--text-dark);
             margin-bottom: 25px;
             padding-bottom: 25px;
-            border-bottom: 1px solid rgba(184, 156, 105, 0.3);
+            border-bottom: 1px solid rgba(193, 162, 98, 0.3);
         }
-
-        .about-lead strong { color: var(--accent); font-weight: 600; }
         
         .about-main p { 
-            font-size: 18px; 
+            font-size: 19px; 
             line-height: 1.8; 
             color: var(--text-light); 
             margin-bottom: 20px;
@@ -330,18 +387,18 @@
         }
 
         .about-achievements {
-            background: var(--white);
+            background: var(--bg-warm);
             padding: 40px;
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            border-top: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(29, 42, 64, 0.03);
+            border-top: 4px solid var(--navy);
         }
 
         .about-achievements h4 {
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 25px;
-            color: var(--text-dark);
-            font-weight: 500;
+            color: var(--navy);
+            font-weight: 600;
             letter-spacing: 1px;
         }
 
@@ -351,19 +408,20 @@
             position: relative;
             padding-left: 25px;
             margin-bottom: 20px;
-            font-size: 18px;
+            font-size: 19px;
             line-height: 1.5;
             color: var(--text-light);
+            font-weight: 400;
         }
 
-        /* Заменил жирную точку на тонкую линию */
         .about-achievements li::before {
             content: '';
             position: absolute;
             left: 0;
             top: 12px;
-            width: 14px;
-            height: 1px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
             background-color: var(--accent);
         }
 
@@ -371,23 +429,24 @@
             color: var(--accent);
             text-decoration: underline;
             transition: color 0.3s;
+            font-weight: 500;
         }
-        .about-achievements a:hover { color: var(--text-dark); }
+        .about-achievements a:hover { color: var(--navy); }
 
-        /* --- УСЛУГИ --- */
+        /* --- ПРАКТИКИ (3 КОЛОНКИ) --- */
         .services-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 40px; 
-            max-width: 1100px; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            max-width: 1300px; /* Расширили для 3 блоков */
             margin: 0 auto; 
         }
 
         .service-card {
-            background-color: var(--white); 
-            padding: 40px; 
+            background-color: var(--bg-warm); 
+            padding: 35px; 
             border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); 
+            box-shadow: 0 10px 40px rgba(29, 42, 64, 0.02); 
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             opacity: 0; 
             transform: translateY(30px);
@@ -403,15 +462,15 @@
         
         .service-card:hover { 
             transform: translateY(-5px); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
-            border-top: 3px solid var(--accent);
+            box-shadow: 0 20px 50px rgba(29, 42, 64, 0.06);
+            border-top: 3px solid var(--navy);
         }
         
         .service-card h4 { 
-            font-size: 26px; 
-            margin-bottom: 20px; 
-            color: var(--text-dark); 
-            font-weight: 500; 
+            font-size: 28px; 
+            margin-bottom: 10px; 
+            color: var(--navy); 
+            font-weight: 600; 
             line-height: 1.2;
             letter-spacing: 1px;
         }
@@ -419,29 +478,29 @@
         .service-card p { 
             font-size: 18px; 
             color: var(--text-light); 
-            line-height: 1.6; 
+            line-height: 1.5; 
             margin-bottom: 25px;
             flex-grow: 1; 
             font-style: italic;
+            font-weight: 400;
         }
 
         .sub-services {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(184, 156, 105, 0.2);
+            border-top: 1px solid rgba(193, 162, 98, 0.2);
         }
 
         .sub-services li {
             position: relative;
             padding-left: 25px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-size: 17px;
-            color: var(--text-dark);
-            font-weight: 400;
+            color: var(--navy);
+            font-weight: 500;
             line-height: 1.4;
         }
 
-        /* Заменил "-" на "⟶" */
         .sub-services li::before {
             content: '⟶';
             position: absolute;
@@ -454,259 +513,169 @@
 
         /* Подвал */
         footer { 
-            background-color: var(--navy); /* Используем темно-синий из логотипа */
+            background-color: var(--navy); 
             color: var(--bg-warm); 
             padding: 80px 40px 120px; 
             text-align: center; 
             position: relative; 
             z-index: 5; 
         }
-        footer h3 { font-family: var(--font-display); font-size: 42px; margin-bottom: 20px; font-weight: 400; letter-spacing: 2px;}
-        footer p { margin-bottom: 15px; font-size: 20px; opacity: 0.9; font-weight: 300; }
-        footer a { font-weight: 500; color: var(--accent); font-size: 24px; transition: color 0.3s;}
+        footer h3 { font-family: var(--font-display); font-size: 42px; margin-bottom: 20px; font-weight: 600; letter-spacing: 2px; }
+        footer p { margin-bottom: 15px; font-size: 21px; opacity: 0.9; font-weight: 400; }
+        footer a { font-weight: 500; color: var(--accent); font-size: 26px; transition: color 0.3s;}
         footer a:hover { color: var(--bg-warm); }
 
         /* --- МОДАЛЬНОЕ ОКНО (ФОРМА) --- */
         .modal-overlay {
-            display: none; 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(28, 43, 59, 0.8); /* Navy с прозрачностью */
-            z-index: 1000;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(29, 42, 64, 0.85); z-index: 1000;
             justify-content: center; align-items: center;
             opacity: 0; transition: opacity 0.3s ease;
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
         }
 
         .modal-overlay.active { display: flex; opacity: 1; }
 
         .modal-content {
-            background-color: var(--bg-warm);
-            padding: 50px;
-            border-radius: 4px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
+            background-color: var(--bg-warm); padding: 50px; border-radius: 4px;
+            width: 90%; max-width: 500px; position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            transform: translateY(20px); transition: transform 0.3s ease;
         }
 
         .modal-overlay.active .modal-content { transform: translateY(0); }
 
         .close-btn {
             position: absolute; top: 20px; right: 25px;
-            font-size: 32px; color: var(--text-light); cursor: pointer;
-            transition: color 0.3s;
+            font-size: 32px; color: var(--text-light); cursor: pointer; transition: color 0.3s;
         }
-        .close-btn:hover { color: var(--accent); }
+        .close-btn:hover { color: var(--navy); }
 
-        .modal-content h3 {
-            font-family: var(--font-display);
-            font-size: 32px; margin-bottom: 10px; color: var(--text-dark); text-align: center;
-            font-weight: 500;
-        }
-        .modal-content p {
-            font-size: 18px; color: var(--text-light); text-align: center; margin-bottom: 30px; font-style: italic;
-        }
+        .modal-content h3 { font-family: var(--font-display); font-size: 34px; margin-bottom: 10px; color: var(--navy); text-align: center; font-weight: 600; }
+        .modal-content p { font-size: 19px; color: var(--text-light); text-align: center; margin-bottom: 30px; font-style: italic; }
 
         .modal-form input, .modal-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 8px; 
-            border: 1px solid rgba(184, 156, 105, 0.5);
-            border-radius: 4px;
-            font-family: var(--font-main);
-            font-size: 18px;
-            color: var(--text-dark);
-            background-color: rgba(255,255,255,0.7);
-            transition: border-color 0.3s;
-            -webkit-appearance: none;
-            appearance: none;
+            width: 100%; padding: 15px; margin-bottom: 8px; 
+            border: 1px solid rgba(193, 162, 98, 0.5); border-radius: 4px;
+            font-family: var(--font-main); font-size: 19px; color: var(--navy);
+            background-color: rgba(255,255,255,0.7); transition: border-color 0.3s;
+            -webkit-appearance: none; appearance: none; font-weight: 400;
         }
 
         .modal-form textarea { resize: none; }
+        .modal-form input:focus, .modal-form textarea:focus { outline: none; border-color: var(--navy); background-color: var(--white); }
 
-        .modal-form input:focus, .modal-form textarea:focus {
-            outline: none;
-            border-color: var(--accent); 
-            background-color: var(--white);
-        }
-
-        .input-error {
-            color: #d32f2f;
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: none;
-            text-align: left;
-            padding-left: 5px;
-        }
+        .input-error { color: #d32f2f; font-size: 15px; margin-bottom: 10px; display: none; text-align: left; padding-left: 5px; font-weight: 500; }
 
         .modal-form button {
-            width: 100%;
-            padding: 18px;
-            background-color: var(--accent); 
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            width: 100%; padding: 18px; background-color: var(--navy); color: var(--white);
+            border: none; border-radius: 4px; font-size: 19px; font-weight: 600;
+            cursor: pointer; transition: background-color 0.3s; margin-top: 15px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .modal-form button:hover { background-color: var(--accent-hover); }
+        .modal-form button:hover { background-color: var(--accent); }
 
-        .xss-error, .form-success {
-            font-size: 16px;
-            margin-bottom: 20px;
-            display: none;
-            text-align: center;
-            padding: 12px;
-            border-radius: 4px;
-        }
-
+        .xss-error, .form-success { font-size: 17px; margin-bottom: 20px; display: none; text-align: center; padding: 12px; border-radius: 4px; font-weight: 500; }
         .xss-error { color: #d32f2f; background-color: #fdecea; border: 1px solid #f5c6cb; }
         .form-success { color: #2e7d32; background-color: #edf7ed; border: 1px solid #c3e6cb; }
 
         /* --- АДАПТИВНОСТЬ --- */
         @media (max-width: 1300px) {
-            .hero-bg-text { font-size: clamp(45px, 7vw, 110px); }
+            .hero-bg-text { font-size: clamp(45px, 6vw, 100px); }
+            .services-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
         }
 
         @media (max-width: 1024px) {
-            .hero-bg-text { font-size: clamp(35px, 6vw, 80px); } 
+            .hero-bg-text { font-size: clamp(35px, 5.5vw, 75px); } 
             .portrait-wrapper { max-width: 320px; }
             .header-contacts { display: none; }
         }
 
         @media (max-width: 900px) {
-            .hero { 
-                display: flex;
-                flex-direction: column;
-                min-height: auto;
-                padding: 60px 20px 0 20px;
-            }
+            .hero { display: flex; flex-direction: column; min-height: auto; padding: 60px 20px 0 20px; }
             
             .hero-bg-text { 
-                position: relative; 
-                top: auto; left: auto; 
-                font-size: 12vw; 
-                letter-spacing: 2px; 
-                margin-top: 0;
-                margin-bottom: 40px;
-                white-space: normal; 
-                text-align: center; 
-                order: 1; 
-                word-wrap: break-word;
+                position: relative; top: auto; left: auto; 
+                font-size: 12vw; letter-spacing: 2px; 
+                margin-top: 0; margin-bottom: 40px;
+                white-space: normal; text-align: center; order: 1; word-wrap: break-word;
             }
 
-            .hero-text-col { 
-                order: 2; 
-                align-self: center;
-                width: 100%;
-                max-width: 100%; 
-                padding-bottom: 40px;
-            }
-
-            .hero-text-block { 
-                text-align: center;
-                margin: 0 auto;
-                border-left: 1px solid var(--accent);
-                border-top: 4px solid var(--accent);
-                padding: 30px;
-            }
-
+            .hero-text-col { order: 2; align-self: center; width: 100%; max-width: 100%; padding-bottom: 40px; }
+            .hero-text-block { text-align: center; margin: 0 auto; border-left: 1px solid var(--accent); border-top: 4px solid var(--navy); padding: 30px; }
             .hero-content-btn { justify-content: center; }
 
-            .hero-image-col {
-                order: 3; 
-                justify-content: center;
-                width: 100%;
-                margin-bottom: 40px;
-            }
+            .hero-image-col { order: 3; justify-content: center; width: 100%; margin-bottom: 40px; }
+            .portrait-wrapper { max-width: 380px; width: 100%; }
             
-            .portrait-wrapper { 
-                max-width: 380px; 
-                width: 100%;
-            }
-            
-            .features-bar { 
-                position: relative; 
-                flex-wrap: wrap; 
-                justify-content: center;
-                gap: 15px; 
-                padding: 30px 20px; 
-                order: 4; 
-            }
+            .features-bar { position: relative; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 30px 20px; order: 4; }
             .feature-item { width: 100%; justify-content: center; }
             
-            header { padding: 20px 30px; }
-            .logo img { height: 45px; }
-            section[id], footer[id] { scroll-margin-top: 100px; } 
+            header { padding: 15px 20px; }
+            header.scrolled { padding: 10px 20px; }
+            .logo img { height: 40px; }
+            header.scrolled .logo img { height: 35px; }
+            section[id], footer[id] { scroll-margin-top: 70px; } 
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .slogan-section { padding: 60px 20px; }
         }
 
         @media (max-width: 768px) {
-            header { padding: 15px 20px; justify-content: space-between; }
+            header { justify-content: space-between; }
             nav { display: none; } 
-            .header-cta span { display: none; } /* Скрываем текст кнопки в шапке на мобилках */
+            .header-cta span { display: none; } 
             
             .hero { padding: 40px 20px 0 20px; }
-            .hero-bg-text { font-size: 12vw; }
-            
             .section-container { padding: 60px 20px; }
-            .section-title { font-size: 36px; }
-            
+            .section-title { font-size: 38px; }
             .modal-content { padding: 30px 20px; }
             .about-achievements { padding: 25px; }
+            .services-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-image"></div>
-    <div class="bg-overlay"></div>
 
-    <header>
-        <!-- Место для логотипа (назови файл logo.png и положи в папку с сайтом) -->
+    <header id="main-header">
         <a href="#" class="logo">
-            <img src="logo.png" alt="ED Logo">
+            <img src="logo.jpg" alt="ED Logo">
         </a>
 
         <nav>
             <ul>
-                <li><a href="#about">Обо мне</a></li>
-                <li><a href="#services">Услуги</a></li>
+                <li><a href="#about">Профиль</a></li>
+                <li><a href="#services">Практики</a></li>
                 <li><a href="#contacts">Контакты</a></li>
             </ul>
         </nav>
 
         <div class="header-contacts">
             <div class="contact-item">
-                <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                <a href="tel:+79053272909">+7 (905) 327-29-09</a>
             </div>
         </div>
 
         <div class="header-cta open-modal-btn">
-            <span>Запись<br>на консультацию</span>
+            <span>Консультация</span>
             <div class="btn-circle"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
     </header>
 
     <main class="hero">
-        <!-- Текст теперь просто плавно появляется из неоткуда -->
         <div class="hero-bg-text">EKATERINA<br>DURMANOVA</div>
         
         <div class="hero-text-col">
             <div class="hero-text-block">
-                <p>Эксперт по международному и корпоративному праву, трансграничным спорам и защите интеллектуальной собственности. Продюсер по правам.</p>
+                <p>Практикующий юрист с опытом работы в сфере защиты прав предпринимателей.</p>
+                <p>Эксперт по корпоративному праву, трансграничным спорам и защите интеллектуальной собственности.</p>
+                <p>Продюсер по правам.<br>Креативный продюсер медиапроектов.</p>
+                
                 <div class="hero-content-btn">
                     <a href="#about" class="btn-outline"><i class="fa-solid fa-arrow-down"></i></a>
-                    <span>Подробнее обо мне</span>
+                    <span>Подробнее</span>
                 </div>
             </div>
         </div>
@@ -718,80 +687,95 @@
         </div>
 
         <div class="features-bar">
-            <div class="feature-item">Более 7 лет успешной практики</div>
-            <div class="feature-item">Полная конфиденциальность</div>
-            <div class="feature-item">Прозрачные условия</div>
-            <div class="feature-item">Защита бизнеса</div>
+            <div class="feature-item">Эффективная защита бизнеса</div>
+            <div class="feature-item">Креативный подход</div>
+            <div class="feature-item">Юридическая точность</div>
+            <div class="feature-item">Право без границ</div>
         </div>
     </main>
 
     <section id="about" class="section-container">
-        <h2 class="section-title">Обо мне</h2>
+        <h2 class="section-title">Профиль</h2>
         <div class="about-grid">
             
             <div class="about-main">
                 <h3>Екатерина Дурманова</h3>
-                <p class="about-lead">Я юрист, эксперт по международному и корпоративному праву, трансграничным спорам и защите интеллектуальной собственности. <strong>Продюсер по правам.</strong></p>
+                <p class="about-lead">Более 7 лет успешной юридической практики в сопровождении крупного и среднего бизнеса.</p>
                 
-                <p>Я консультирую бизнес по юридическим вопросам, выстраиваю международные юридические бизнес-процессы: от организации бизнеса и заключения трансграничных сделок до представления интересов при разрешении споров. Формирую стратегию управления интеллектуальными правами.</p>
+                <p>Консультирует бизнес по юридическим вопросам.</p>
                 
-                <p>Обладаю более чем 7-летним опытом в юридическом сопровождении крупного и среднего бизнеса, имею практический опыт ведения многомиллиардных кейсов, успешно защищаю интересы российских и зарубежных предпринимателей в спорах с иностранным элементом.</p>
+                <p>Выстраивает международные юридические бизнес-процессы: от организации бизнеса и заключения трансграничных сделок до представления интересов при разрешении споров.</p>
+                
+                <p>Формирует стратегию управления интеллектуальными правами.</p>
+                
+                <p>Имеет практический опыт ведения многомиллиардных кейсов, успешно защищает интересы российских и зарубежных предпринимателей.</p>
             </div>
 
             <div class="about-achievements">
                 <h4>Образование и достижения</h4>
                 <ul>
-                    <li>Выпускница Института права стран Восточной Европы Кильского университета им. Христиана Альбрехта (Германия) и Саратовской государственной юридической академии.</li>
-                    <li>Дипломированный переводчик немецкого языка.</li>
-                    <li>Международный юридический советник Всемирного бизнес-альянса (<a href="https://wba-alliance.com" target="_blank">WBA</a>).</li>
-                    <li>Автор научных статей в признанных юридических журналах.</li>
+                    <li>Магистр права СГЮА им. Д.И. Курского</li>
+                    <li>Дипломированный переводчик немецкого языка</li>
+                    <li>Выпускница Института права стран Восточной Европы Кильского университета им. Христиана Альбрехта (Германия)</li>
+                    <li>Международный юридический советник, член Совета директоров <a href="https://wba-alliance.com/fea/tproduct/361348391-208173226814-ekaterina-andreevna-durmanova" target="_blank">Всемирного бизнес-альянса (Worldwide Business Alliance)</a></li>
+                    <li>Автор научных статей в признанных юридических журналах</li>
+                    <li>Выпускница Высшей школы кино и телевидения «Останкино» и Школы Первого канала</li>
+                    <li>Креативный продюсер медиапроектов Всемирного бизнес-альянса</li>
                 </ul>
             </div>
 
         </div>
     </section>
 
+    <section class="slogan-section">
+        <h2 class="slogan-text">«Юридическая ясность для творческих решений»</h2>
+    </section>
+
     <section id="services" class="section-container">
-        <h2 class="section-title">Виды услуг</h2>
+        <h2 class="section-title">Практики</h2>
         <div class="services-grid">
             
+            <!-- Блок 1 -->
             <div class="service-card">
-                <h4>Международное и корпоративное право</h4>
-                <p>Выстраивание международных бизнес-процессов, организация бизнеса и структурирование корпоративных отношений.</p>
+                <h4>Защита бизнеса</h4>
+                <p>Корпоративная защита и международная экспертиза для устойчивого бизнеса</p>
                 <ul class="sub-services">
-                    <li>Регистрация компаний за рубежом</li>
-                    <li>Структурирование сделок M&A</li>
-                    <li>Корпоративные соглашения и уставы</li>
+                    <li>Корпоративное структурирование, корпоративные договоры</li>
+                    <li>Защита собственников бизнеса</li>
+                    <li>Разрешение споров: суды, арбитраж, переговоры, медиация</li>
+                    <li>Сопровождение внешнеэкономических контрактов</li>
+                    <li>Трансграничные споры</li>
+                    <li>Корпоративные конфликты и защита от недружественных поглощений</li>
+                    <li>Комплаенс и минимизация правовых рисков</li>
+                    <li>Due diligence и оценка рисков</li>
                 </ul>
             </div>
 
+            <!-- Блок 2 -->
             <div class="service-card">
-                <h4>Трансграничные споры</h4>
-                <p>Представление интересов российских и зарубежных предпринимателей при разрешении сложных споров с иностранным элементом.</p>
+                <h4>Интеллектуальная собственность и права</h4>
+                <p>IP-практика и продюсирование по правам: экспертиза на стыке права, кино и медиа</p>
                 <ul class="sub-services">
-                    <li>Международный арбитраж и медиация</li>
-                    <li>Споры с иностранными контрагентами</li>
-                    <li>Признание иностранных судебных решений</li>
+                    <li>Формирование стратегии управления интеллектуальными правами</li>
+                    <li>Сопровождение продюсерских проектов</li>
+                    <li>Оформление прав на сценарий, музыку, изображение, персонажей и формат аудиовизуального произведения</li>
+                    <li>Development и работа с авторами</li>
+                    <li>Дистрибуция и лицензирование контента: лицензионные договоры</li>
+                    <li>Договоры в кинопроизводстве</li>
+                    <li>IP-аудит проектов: проверка правовой чистоты проекта на всех этапах производства</li>
+                    <li>Генеративный ИИ и новые медиа</li>
                 </ul>
             </div>
 
+            <!-- Блок 3 -->
             <div class="service-card">
-                <h4>Защита интеллектуальной собственности</h4>
-                <p>Формирование стратегии управления интеллектуальными правами и сопровождение продюсерских проектов.</p>
+                <h4>Продюсирование медиапроектов</h4>
+                <p>Реализация проектов от идеи до выпуска — на стыке права и продакшена</p>
                 <ul class="sub-services">
-                    <li>Регистрация товарных знаков и патентов</li>
-                    <li>Защита авторских прав и роялти</li>
-                    <li>Лицензионные договоры и франшиза</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <h4>Юридическое сопровождение бизнеса</h4>
-                <p>Комплексная правовая поддержка крупного и среднего бизнеса, ведение многомиллиардных кейсов.</p>
-                <ul class="sub-services">
-                    <li>Абонентское юридическое обслуживание</li>
-                    <li>Due Diligence (комплексная проверка)</li>
-                    <li>Сопровождение налоговых проверок</li>
+                    <li>Запуск медиапроектов: концепция, команда, организационное и правовое сопровождение</li>
+                    <li>Производство контента: координация съемок, работа с авторами, контроль сроков и бюджета</li>
+                    <li>Оформление прав на контент и договоры с участниками проекта</li>
+                    <li>Дистрибуция и монетизация: вывод на платформы, работа с партнерами</li>
                 </ul>
             </div>
 
@@ -799,14 +783,15 @@
     </section>
 
     <footer id="contacts">
-        <h3>Нужна юридическая помощь?</h3>
-        <p>Запишитесь на первичную консультацию, чтобы обсудить вашу ситуацию.</p>
+        <h3>Креативные решения начинаются здесь</h3>
+        <p>Обсудим Ваш проект?</p>
         <br>
         <p style="margin-bottom: 30px;">
-            <a href="javascript:void(0);" class="open-modal-btn" style="background-color: var(--accent); color: var(--navy); padding: 15px 35px; border-radius: 4px; font-size: 18px; font-weight: 600; display: inline-block; text-transform: uppercase; letter-spacing: 1.5px;">Записаться на консультацию</a>
+            <a href="javascript:void(0);" class="open-modal-btn" style="background-color: var(--accent); color: var(--navy); padding: 15px 35px; border-radius: 4px; font-size: 19px; font-weight: 600; display: inline-block; text-transform: uppercase; letter-spacing: 1.5px;">Запись на консультацию</a>
         </p>
-        <p><a href="tel:+79991234567">+7 (999) 123-45-67</a></p>
-        <p><a href="mailto:info@durmanova-law.ru" style="font-size: 18px; opacity: 0.8;">info@durmanova-law.ru</a></p>
+        <p><a href="tel:+79053272909">+7 (905) 327-29-09</a></p>
+        <p><a href="mailto:info@durmanova-law.ru" style="font-size: 19px; opacity: 0.8; font-weight: 400;">info@durmanova-law.ru</a></p>
+        <p><a href="https://t.me/edurmanova" target="_blank" style="font-size: 19px; opacity: 0.8; font-weight: 400;">t.me/edurmanova</a></p>
     </footer>
 
     <div id="consultation-modal" class="modal-overlay">
@@ -837,7 +822,15 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- 1. Анимация карточек услуг при прокрутке ---
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
             const cards = document.querySelectorAll('.service-card');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
@@ -851,7 +844,6 @@
             }, { threshold: 0.1 });
             cards.forEach(card => { observer.observe(card); });
 
-            // --- 2. Логика модального окна и формы ---
             const modal = document.getElementById('consultation-modal');
             const openBtns = document.querySelectorAll('.open-modal-btn');
             const closeBtn = document.querySelector('.close-btn');
@@ -893,7 +885,7 @@
 
                 this.value = formatted;
                 phoneError.style.display = 'none';
-                this.style.borderColor = 'rgba(184, 156, 105, 0.5)';
+                this.style.borderColor = 'rgba(193, 162, 98, 0.5)';
             });
 
             const emailInput = document.getElementById('email-input');
@@ -904,7 +896,7 @@
                 const val = emailInput.value.trim();
                 if (!val) {
                     emailError.style.display = 'none';
-                    emailInput.style.borderColor = 'rgba(184, 156, 105, 0.5)';
+                    emailInput.style.borderColor = 'rgba(193, 162, 98, 0.5)';
                     return true; 
                 }
 
@@ -924,7 +916,7 @@
                     return false;
                 } else {
                     emailError.style.display = 'none';
-                    emailInput.style.borderColor = 'rgba(184, 156, 105, 0.5)';
+                    emailInput.style.borderColor = 'rgba(193, 162, 98, 0.5)';
                     return true;
                 }
             }
