@@ -20,9 +20,9 @@
             --white: #ffffff;
             
             /* ЦВЕТА TIFFANY BLUE */
-            --tiffany-main: #0ABAB5;    /* Классический тиффани */
-            --tiffany-dark: #007B77;    /* Темный тиффани для кнопок и подвала */
-            --tiffany-light: #E0F4F4;   /* Нежный светлый тиффани для градиентов */
+            --tiffany-main: #0ABAB5;    
+            --tiffany-dark: #007B77;    
+            --tiffany-light: #E0F4F4;   
             
             --font-main: 'Inter', sans-serif;
             --font-display: 'Prata', serif; 
@@ -40,6 +40,45 @@
             min-height: 100vh;
             background-color: var(--bg-warm); 
         }
+
+        /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInSimple {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Анимация курсора для печатной машинки */
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Применение анимаций */
+        header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
+        .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; }
+        .hero-image-col { animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
+        .features-bar { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both; }
+        .bg-overlay { animation: fadeInSimple 1.5s ease-out both; }
+
+        /* Отключение анимаций для тех, кто предпочитает меньше движения */
+        @media (prefers-reduced-motion: reduce) {
+            header, .hero-text-col, .hero-image-col, .features-bar, .bg-overlay {
+                animation: none !important;
+            }
+        }
+        /* ------------------------------- */
 
         /* ФОН ИНТЕРЬЕРА */
         .bg-image {
@@ -122,13 +161,13 @@
             overflow: hidden;
         }
 
+        /* ИЗМЕНЕНО: top 12%, убран transform и старая анимация */
         .hero-bg-text {
             position: absolute;
-            top: 25%;
+            top: 12%;
             left: 5%; 
-            transform: translateY(-50%); 
             font-family: var(--font-display);
-            font-size: clamp(50px, 8vw, 160px); 
+            font-size: clamp(40px, 7vw, 140px); 
             line-height: 0.9;
             color: var(--text-dark);
             text-transform: uppercase; 
@@ -139,6 +178,17 @@
             opacity: 0.85; 
             pointer-events: none;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Стили для курсора печатной машинки */
+        .cursor {
+            display: inline-block;
+            width: 4px;
+            height: 0.8em;
+            background-color: var(--text-dark);
+            animation: blink 0.75s step-end infinite;
+            vertical-align: middle;
+            margin-left: 5px;
         }
 
         /* Левая колонка с текстом */
@@ -272,7 +322,6 @@
             margin-bottom: 15px;
         }
 
-        /* БЕЖЕВО-ТИФФАНИ ГРАДИЕНТ ДЛЯ ДОСТИЖЕНИЙ */
         .about-achievements {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(224, 244, 244, 0.6) 100%);
             padding: 30px;
@@ -388,7 +437,7 @@
             font-weight: bold;
         }
 
-        /* Подвал (ТЕПЕРЬ TIFFANY DARK) */
+        /* Подвал */
         footer { 
             background-color: var(--tiffany-dark); 
             color: var(--bg-warm); 
@@ -508,8 +557,14 @@
         .form-success { color: #2e7d32; background-color: #edf7ed; border: 1px solid #c3e6cb; }
 
         /* --- АДАПТИВНОСТЬ --- */
+        
+        /* НОВОЕ: Плавное уменьшение шрифта до 1300px, чтобы не заезжал на фото */
+        @media (max-width: 1300px) {
+            .hero-bg-text { font-size: clamp(35px, 6vw, 100px); }
+        }
+
         @media (max-width: 1024px) {
-            .hero-bg-text { font-size: clamp(40px, 7vw, 100px); }
+            .hero-bg-text { font-size: clamp(30px, 5.5vw, 75px); } /* Уменьшено для 1024 */
             .portrait-wrapper { max-width: 320px; }
             .hero-text-block { padding: 25px; }
             .header-contacts { display: none; }
@@ -524,7 +579,6 @@
                 padding: 40px 20px 0 20px;
             }
             
-            /* 1. Имя */
             .hero-bg-text { 
                 position: relative; 
                 top: auto; left: auto; 
@@ -539,7 +593,6 @@
                 word-wrap: break-word;
             }
 
-            /* 2. Блок с описанием (поднимаем выше фото) */
             .hero-text-col { 
                 order: 2; 
                 align-self: center;
@@ -555,7 +608,6 @@
 
             .hero-content-btn { justify-content: center; }
 
-            /* 3. Портрет (опускаем вниз) */
             .hero-image-col {
                 order: 3; 
                 justify-content: center;
@@ -568,7 +620,6 @@
                 width: 100%;
             }
             
-            /* 4. Плашка преимуществ */
             .features-bar { 
                 position: relative; 
                 flex-wrap: wrap; 
@@ -629,7 +680,11 @@
 
     <!-- ГЛАВНЫЙ ЭКРАН (GRID) -->
     <main class="hero">
-        <div class="hero-bg-text">EKATERINA<br>DURMANOVA</div>
+        <!-- Подготовлены контейнеры для JS печатной машинки -->
+        <div class="hero-bg-text" aria-label="EKATERINA DURMANOVA">
+            <span id="typed-line1"></span><br>
+            <span id="typed-line2"></span>
+        </div>
         
         <!-- Левая колонка (на мобильных Order: 2) -->
         <div class="hero-text-col">
@@ -754,7 +809,7 @@
             <div id="xss-error" class="xss-error">Обнаружены недопустимые символы. Пожалуйста, проверьте ввод.</div>
             <div id="form-success" class="form-success">Спасибо! Ваша заявка успешно отправлена.</div>
 
-            <form action="https://formspree.io/f/ВАШ_ID" method="POST" class="modal-form" id="consultation-form" novalidate>
+            <form action="https://formspree.io/f/xvkkwqjv" method="POST" class="modal-form" id="consultation-form" novalidate>
                 <input type="text" name="name" placeholder="Ваше имя" required>
                 <div class="input-error" id="name-error">Пожалуйста, введите ваше имя</div>
                 
@@ -773,6 +828,49 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- 1. Эффект печатной машинки для имени ---
+            const line1 = "EKATERINA";
+            const line2 = "DURMANOVA";
+            const el1 = document.getElementById('typed-line1');
+            const el2 = document.getElementById('typed-line2');
+            const cursor = '<span class="cursor"></span>';
+            
+            // Проверка на доступность (отключение анимации для тех, кто её не любит)
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (prefersReducedMotion) {
+                el1.innerHTML = line1;
+                el2.innerHTML = line2;
+            } else {
+                let i = 0;
+                function typeLine1() {
+                    if (i < line1.length) {
+                        el1.innerHTML = line1.substring(0, i + 1) + cursor;
+                        i++;
+                        setTimeout(typeLine1, 100); // Скорость печати (мс)
+                    } else {
+                        el1.innerHTML = line1; // Убираем курсор с первой строки
+                        setTimeout(typeLine2, 200); // Пауза перед второй строкой
+                    }
+                }
+
+                let j = 0;
+                function typeLine2() {
+                    if (j < line2.length) {
+                        el2.innerHTML = line2.substring(0, j + 1) + cursor;
+                        j++;
+                        setTimeout(typeLine2, 100);
+                    } else {
+                        el2.innerHTML = line2 + cursor; // Оставляем курсор мигать в конце
+                    }
+                }
+                
+                // Запуск с небольшой задержкой после загрузки
+                setTimeout(typeLine1, 400);
+            }
+            // ----------------------------------------------
+
+            // --- 2. Анимация карточек услуг при прокрутке ---
             const cards = document.querySelectorAll('.service-card');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
@@ -785,172 +883,173 @@
                 });
             }, { threshold: 0.1 });
             cards.forEach(card => { observer.observe(card); });
-        });
 
-        const modal = document.getElementById('consultation-modal');
-        const openBtns = document.querySelectorAll('.open-modal-btn');
-        const closeBtn = document.querySelector('.close-btn');
-        const successMsg = document.getElementById('form-success');
+            // --- 3. Логика модального окна и формы ---
+            const modal = document.getElementById('consultation-modal');
+            const openBtns = document.querySelectorAll('.open-modal-btn');
+            const closeBtn = document.querySelector('.close-btn');
+            const successMsg = document.getElementById('form-success');
 
-        openBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                modal.classList.add('active');
-                document.getElementById('xss-error').style.display = 'none'; 
-                successMsg.style.display = 'none';
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    document.getElementById('xss-error').style.display = 'none'; 
+                    successMsg.style.display = 'none';
+                });
             });
-        });
 
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            closeBtn.addEventListener('click', () => {
                 modal.classList.remove('active');
-            }
-        });
+            });
 
-        const phoneInput = document.getElementById('phone-input');
-        const phoneError = document.getElementById('phone-error');
-
-        phoneInput.addEventListener('input', function (e) {
-            let input = this.value.replace(/\D/g, ''); 
-            
-            if (input.startsWith('8')) input = '7' + input.slice(1);
-            if (input.length > 0 && input[0] !== '7') input = '7' + input;
-
-            let formatted = '';
-            if (input.length > 0) formatted = '+7';
-            if (input.length > 1) formatted += ' (' + input.substring(1, 4);
-            if (input.length >= 4) formatted += ') ' + input.substring(4, 7);
-            if (input.length >= 7) formatted += '-' + input.substring(7, 9);
-            if (input.length >= 9) formatted += '-' + input.substring(9, 11);
-
-            this.value = formatted;
-            phoneError.style.display = 'none';
-            this.style.borderColor = 'var(--frame-color)';
-        });
-
-        const emailInput = document.getElementById('email-input');
-        const emailError = document.getElementById('email-error');
-        const popularDomains = ['gmail.com', 'mail.ru', 'yandex.ru', 'bk.ru', 'inbox.ru', 'list.ru', 'rambler.ru', 'icloud.com', 'outlook.com'];
-
-        function validateEmailDomain() {
-            const val = emailInput.value.trim();
-            if (!val) {
-                emailError.style.display = 'none';
-                emailInput.style.borderColor = 'var(--frame-color)';
-                return true; 
-            }
-
-            const parts = val.split('@');
-            if (parts.length !== 2) {
-                emailError.textContent = 'Некорректный формат email.';
-                emailError.style.display = 'block';
-                emailInput.style.borderColor = '#d32f2f';
-                return false;
-            }
-
-            const domain = parts[1].toLowerCase();
-            
-            if (!popularDomains.includes(domain)) {
-                emailError.style.display = 'block';
-                emailInput.style.borderColor = '#d32f2f';
-                return false;
-            } else {
-                emailError.style.display = 'none';
-                emailInput.style.borderColor = 'var(--frame-color)';
-                return true;
-            }
-        }
-
-        emailInput.addEventListener('blur', validateEmailDomain);
-
-        const form = document.getElementById('consultation-form');
-        const errorDiv = document.getElementById('xss-error');
-        const submitBtn = document.getElementById('submit-btn');
-
-        function containsXSS(str) {
-            const xssPattern = /<script|<\/script>|javascript:|onerror=|onload=|onclick=|onmouseover=|<img|<svg|<iframe|<object|<embed|<applet|<meta|<link|<style/i;
-            return xssPattern.test(str);
-        }
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-
-            let hasErrors = false;
-
-            const fields = form.querySelectorAll('input, textarea');
-            fields.forEach(field => {
-                if (containsXSS(field.value)) {
-                    hasErrors = true;
-                    field.style.borderColor = '#d32f2f'; 
-                } else {
-                    field.style.borderColor = ''; 
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
                 }
             });
 
-            if (hasErrors) {
-                errorDiv.style.display = 'block';
-                successMsg.style.display = 'none';
-                return; 
-            } else {
-                errorDiv.style.display = 'none';
-            }
+            const phoneInput = document.getElementById('phone-input');
+            const phoneError = document.getElementById('phone-error');
 
-            const phoneDigits = phoneInput.value.replace(/\D/g, '');
-            if (phoneDigits.length !== 11) {
-                phoneError.style.display = 'block';
-                phoneInput.style.borderColor = '#d32f2f';
-                return;
-            }
+            phoneInput.addEventListener('input', function (e) {
+                let input = this.value.replace(/\D/g, ''); 
+                
+                if (input.startsWith('8')) input = '7' + input.slice(1);
+                if (input.length > 0 && input[0] !== '7') input = '7' + input;
 
-            if (!validateEmailDomain()) {
-                return;
-            }
+                let formatted = '';
+                if (input.length > 0) formatted = '+7';
+                if (input.length > 1) formatted += ' (' + input.substring(1, 4);
+                if (input.length >= 4) formatted += ') ' + input.substring(4, 7);
+                if (input.length >= 7) formatted += '-' + input.substring(7, 9);
+                if (input.length >= 9) formatted += '-' + input.substring(9, 11);
 
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.7';
-
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    successMsg.style.display = 'block';
-                    form.reset(); 
-                    
-                    setTimeout(() => {
-                        modal.classList.remove('active');
-                        successMsg.style.display = 'none';
-                    }, 3000);
-                } else {
-                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
-                }
-            })
-            .catch(error => {
-                alert('Ошибка сети. Проверьте подключение к интернету.');
-            })
-            .finally(() => {
-                submitBtn.textContent = 'Отправить заявку';
-                submitBtn.disabled = false;
-                submitBtn.style.opacity = '1';
+                this.value = formatted;
+                phoneError.style.display = 'none';
+                this.style.borderColor = 'var(--frame-color)';
             });
-        });
 
-        form.querySelectorAll('input, textarea').forEach(field => {
-            field.addEventListener('input', () => {
-                field.style.borderColor = '';
-                errorDiv.style.display = 'none';
-                if(field.name === 'phone') phoneError.style.display = 'none';
-                if(field.name === 'email') emailError.style.display = 'none';
+            const emailInput = document.getElementById('email-input');
+            const emailError = document.getElementById('email-error');
+            const popularDomains = ['gmail.com', 'mail.ru', 'yandex.ru', 'bk.ru', 'inbox.ru', 'list.ru', 'rambler.ru', 'icloud.com', 'outlook.com'];
+
+            function validateEmailDomain() {
+                const val = emailInput.value.trim();
+                if (!val) {
+                    emailError.style.display = 'none';
+                    emailInput.style.borderColor = 'var(--frame-color)';
+                    return true; 
+                }
+
+                const parts = val.split('@');
+                if (parts.length !== 2) {
+                    emailError.textContent = 'Некорректный формат email.';
+                    emailError.style.display = 'block';
+                    emailInput.style.borderColor = '#d32f2f';
+                    return false;
+                }
+
+                const domain = parts[1].toLowerCase();
+                
+                if (!popularDomains.includes(domain)) {
+                    emailError.style.display = 'block';
+                    emailInput.style.borderColor = '#d32f2f';
+                    return false;
+                } else {
+                    emailError.style.display = 'none';
+                    emailInput.style.borderColor = 'var(--frame-color)';
+                    return true;
+                }
+            }
+
+            emailInput.addEventListener('blur', validateEmailDomain);
+
+            const form = document.getElementById('consultation-form');
+            const errorDiv = document.getElementById('xss-error');
+            const submitBtn = document.getElementById('submit-btn');
+
+            function containsXSS(str) {
+                const xssPattern = /<script|<\/script>|javascript:|onerror=|onload=|onclick=|onmouseover=|<img|<svg|<iframe|<object|<embed|<applet|<meta|<link|<style/i;
+                return xssPattern.test(str);
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+
+                let hasErrors = false;
+
+                const fields = form.querySelectorAll('input, textarea');
+                fields.forEach(field => {
+                    if (containsXSS(field.value)) {
+                        hasErrors = true;
+                        field.style.borderColor = '#d32f2f'; 
+                    } else {
+                        field.style.borderColor = ''; 
+                    }
+                });
+
+                if (hasErrors) {
+                    errorDiv.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    return; 
+                } else {
+                    errorDiv.style.display = 'none';
+                }
+
+                const phoneDigits = phoneInput.value.replace(/\D/g, '');
+                if (phoneDigits.length !== 11) {
+                    phoneError.style.display = 'block';
+                    phoneInput.style.borderColor = '#d32f2f';
+                    return;
+                }
+
+                if (!validateEmailDomain()) {
+                    return;
+                }
+
+                submitBtn.textContent = 'Отправка...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        successMsg.style.display = 'block';
+                        form.reset(); 
+                        
+                        setTimeout(() => {
+                            modal.classList.remove('active');
+                            successMsg.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+                    }
+                })
+                .catch(error => {
+                    alert('Ошибка сети. Проверьте подключение к интернету.');
+                })
+                .finally(() => {
+                    submitBtn.textContent = 'Отправить заявку';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                });
+            });
+
+            form.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('input', () => {
+                    field.style.borderColor = '';
+                    errorDiv.style.display = 'none';
+                    if(field.name === 'phone') phoneError.style.display = 'none';
+                    if(field.name === 'email') emailError.style.display = 'none';
+                });
             });
         });
     </script>
