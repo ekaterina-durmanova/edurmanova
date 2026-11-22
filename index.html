@@ -56,7 +56,7 @@
             transform: translateZ(0);
         }
 
-        /* ЗДЕСЬ ДОБАВЛЕНЫ ЗАДЕРЖКИ (1.5s - 2.2s) */
+        /* ЗАДЕРЖКИ (1.5s - 2.2s) */
         header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) 1.5s both; }
         .hero-bg-text { animation: textReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 1.6s both; }
         .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 1.8s both; }
@@ -820,15 +820,24 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- 1. ФИКС МИГАНИЯ ШАПКИ (Гистерезис) ---
             const header = document.getElementById('main-header');
+            
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
+                const currentScrollY = window.scrollY;
+                
+                // Если прокрутили больше 80px — добавляем белый фон
+                if (currentScrollY > 80) {
                     header.classList.add('scrolled');
-                } else {
+                } 
+                // Если вернулись выше 30px — убираем фон
+                else if (currentScrollY < 30) {
                     header.classList.remove('scrolled');
                 }
-            });
+                // В промежутке от 30 до 80 ничего не делаем (оставляем как есть, чтобы не мигало)
+            }, { passive: true });
 
+            // --- 2. Анимация карточек услуг при прокрутке ---
             const cards = document.querySelectorAll('.service-card');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
@@ -842,6 +851,7 @@
             }, { threshold: 0.1 });
             cards.forEach(card => { observer.observe(card); });
 
+            // --- 3. Логика модального окна и формы ---
             const modal = document.getElementById('consultation-modal');
             const openBtns = document.querySelectorAll('.open-modal-btn');
             const closeBtn = document.querySelector('.close-btn');
