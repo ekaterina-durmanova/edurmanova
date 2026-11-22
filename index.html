@@ -56,11 +56,12 @@
             transform: translateZ(0);
         }
 
-        header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
-        .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; }
-        .hero-image-col { animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
-        .features-bar { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s both; }
-        .hero-bg-text { animation: textReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both; }
+        /* ЗДЕСЬ ДОБАВЛЕНЫ ЗАДЕРЖКИ (1.5s - 2.2s) */
+        header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) 1.5s both; }
+        .hero-bg-text { animation: textReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 1.6s both; }
+        .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 1.8s both; }
+        .hero-image-col { animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 2.0s both; }
+        .features-bar { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 2.2s both; }
 
         @media (prefers-reduced-motion: reduce) {
             header, .hero-text-col, .hero-image-col, .features-bar, .hero-bg-text { animation: none !important; }
@@ -438,7 +439,7 @@
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
             gap: 30px; 
-            max-width: 1300px; /* Расширили для 3 блоков */
+            max-width: 1300px; 
             margin: 0 auto; 
         }
 
@@ -735,7 +736,6 @@
         <h2 class="section-title">Практики</h2>
         <div class="services-grid">
             
-            <!-- Блок 1 -->
             <div class="service-card">
                 <h4>Защита бизнеса</h4>
                 <p>Корпоративная защита и международная экспертиза для устойчивого бизнеса</p>
@@ -751,7 +751,6 @@
                 </ul>
             </div>
 
-            <!-- Блок 2 -->
             <div class="service-card">
                 <h4>Интеллектуальная собственность и права</h4>
                 <p>IP-практика и продюсирование по правам: экспертиза на стыке права, кино и медиа</p>
@@ -767,7 +766,6 @@
                 </ul>
             </div>
 
-            <!-- Блок 3 -->
             <div class="service-card">
                 <h4>Продюсирование медиапроектов</h4>
                 <p>Реализация проектов от идеи до выпуска — на стыке права и продакшена</p>
