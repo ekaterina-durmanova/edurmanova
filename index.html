@@ -40,12 +40,21 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ --- */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ (ПЛАВНЕЕ) --- */
+        @keyframes fadeInDown { 
+            from { opacity: 0; transform: translateY(-10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes fadeInRight { 
+            from { opacity: 0; transform: translateX(20px); } 
+            to { opacity: 1; transform: translateX(0); } 
+        }
         @keyframes textReveal {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            from { opacity: 0; transform: scale(0.98) translateY(5px); }
             to { opacity: 0.95; transform: scale(1) translateY(0); }
         }
 
@@ -56,12 +65,12 @@
             transform: translateZ(0);
         }
 
-        /* ЗАДЕРЖКИ (1.5s - 2.2s) */
-        header { animation: fadeInDown 1s cubic-bezier(0.25, 1, 0.5, 1) 1.5s both; }
-        .hero-bg-text { animation: textReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 1.6s both; }
-        .hero-text-col { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 1.8s both; }
-        .hero-image-col { animation: fadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) 2.0s both; }
-        .features-bar { animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 2.2s both; }
+        /* ДОБАВИЛИ 1.5 СЕКУНДЫ КО ВСЕМ ЗАДЕРЖКАМ И СДЕЛАЛИ ИХ ПЛАВНЕЕ */
+        header { animation: fadeInDown 2.6s cubic-bezier(0.16, 1, 0.3, 1) 2.0s both; }
+        .hero-bg-text { animation: textReveal 2.8s cubic-bezier(0.16, 1, 0.3, 1) 2.1s both; }
+        .hero-text-col { animation: fadeInUp 2.6s cubic-bezier(0.16, 1, 0.3, 1) 2.3s both; }
+        .hero-image-col { animation: fadeInRight 2.8s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both; }
+        .features-bar { animation: fadeInUp 2.6s cubic-bezier(0.16, 1, 0.3, 1) 2.7s both; }
 
         @media (prefers-reduced-motion: reduce) {
             header, .hero-text-col, .hero-image-col, .features-bar, .hero-bg-text { animation: none !important; }
@@ -826,15 +835,12 @@
             window.addEventListener('scroll', () => {
                 const currentScrollY = window.scrollY;
                 
-                // Если прокрутили больше 80px — добавляем белый фон
                 if (currentScrollY > 80) {
                     header.classList.add('scrolled');
                 } 
-                // Если вернулись выше 30px — убираем фон
                 else if (currentScrollY < 30) {
                     header.classList.remove('scrolled');
                 }
-                // В промежутке от 30 до 80 ничего не делаем (оставляем как есть, чтобы не мигало)
             }, { passive: true });
 
             // --- 2. Анимация карточек услуг при прокрутке ---
