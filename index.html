@@ -11,13 +11,16 @@
     
     <style>
         :root {
-            --text-dark: #1D2A40;      
-            --text-light: #3B4A5A;     
-            --accent: #C1A262;         
+            /* НОВАЯ ПАЛИТРА */
+            --text-dark: #5D5B59;      /* Глубокий синий для текста */
+            --text-light: #363434;     /* Чуть более светлый синий для абзацев */
+            --accent: #C1A262;         /* Золотистый */
             --accent-hover: #A88B50;   
-            --bg-warm: #F8F5EE;        
-            --white: #ffffff;
-            --navy: #1D2A40;           
+            
+            --bg-main: #F6F5E8;        /* Светло-кремовый со скриншота */
+            --bg-achievements: #D9BE85;/* Желтый для блока достижений */
+            --text-white: #FFFFFF;     /* Чистый белый */
+            --navy: #0B1B3A;           /* Глубокий синий */
             
             --font-main: 'Cormorant Garamond', serif;
             --font-display: 'Cormorant Garamond', serif; 
@@ -33,14 +36,14 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            background-color: var(--bg-warm); 
+            background-color: var(--bg-main); 
             font-size: 19px; 
             font-weight: 400; 
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ (ПЛАВНЕЕ) --- */
+        /* --- АНИМАЦИИ ПРИ ЗАГРУЗКЕ --- */
         @keyframes fadeInDown { 
             from { opacity: 0; transform: translateY(-10px); } 
             to { opacity: 1; transform: translateY(0); } 
@@ -65,12 +68,11 @@
             transform: translateZ(0);
         }
 
-        /* ДОБАВИЛИ 1.5 СЕКУНДЫ КО ВСЕМ ЗАДЕРЖКАМ И СДЕЛАЛИ ИХ ПЛАВНЕЕ */
-        header { animation: fadeInDown 2.6s cubic-bezier(0.16, 1, 0.3, 1) 2.0s both; }
-        .hero-bg-text { animation: textReveal 2.8s cubic-bezier(0.16, 1, 0.3, 1) 2.1s both; }
-        .hero-text-col { animation: fadeInUp 2.6s cubic-bezier(0.16, 1, 0.3, 1) 2.3s both; }
-        .hero-image-col { animation: fadeInRight 2.8s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both; }
-        .features-bar { animation: fadeInUp 2.6s cubic-bezier(0.16, 1, 0.3, 1) 2.7s both; }
+        header { animation: fadeInDown 1.8s cubic-bezier(0.16, 1, 0.3, 1) 3.0s both; }
+        .hero-bg-text { animation: textReveal 2.2s cubic-bezier(0.16, 1, 0.3, 1) 3.1s both; }
+        .hero-text-col { animation: fadeInUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 3.3s both; }
+        .hero-image-col { animation: fadeInRight 2.0s cubic-bezier(0.16, 1, 0.3, 1) 3.5s both; }
+        .features-bar { animation: fadeInUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 3.7s both; }
 
         @media (prefers-reduced-motion: reduce) {
             header, .hero-text-col, .hero-image-col, .features-bar, .hero-bg-text { animation: none !important; }
@@ -104,16 +106,16 @@
             z-index: 100;
             background-color: transparent; 
             transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
-            color: var(--bg-warm);
+            color: var(--text-white); /* Белый текст на фоне картинки */
         }
 
         header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(248, 245, 238, 0.95); /* Кремовый фон при скролле */
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(29, 42, 64, 0.05); 
+            box-shadow: 0 4px 20px rgba(11, 27, 58, 0.08); 
             padding: 10px 60px; 
-            color: var(--text-dark);
+            color: var(--text-dark); /* Темный текст при скролле */
         }
 
         .logo {
@@ -170,17 +172,17 @@
         .btn-circle {
             display: flex; align-items: center; justify-content: center;
             width: 45px; height: 45px;
-            background-color: var(--bg-warm); color: var(--navy);
+            background-color: var(--bg-main); color: var(--navy);
             border-radius: 50%; font-size: 16px;
             transition: background-color 0.3s, transform 0.3s, color 0.3s;
         }
         
         header.scrolled .btn-circle {
             background-color: var(--navy); 
-            color: var(--white);
+            color: var(--text-white);
         }
         
-        .header-cta:hover .btn-circle { background-color: var(--accent); color: var(--white); }
+        .header-cta:hover .btn-circle { background-color: var(--accent); color: var(--text-white); }
 
         /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
         .hero {
@@ -201,7 +203,7 @@
             font-family: var(--font-display);
             font-size: clamp(45px, 7vw, 130px); 
             line-height: 0.85;
-            color: var(--bg-warm); 
+            color: var(--text-white); /* Белый текст */
             text-transform: uppercase; 
             letter-spacing: 2px;
             z-index: 1;
@@ -221,14 +223,14 @@
         }
 
         .hero-text-block {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(248, 245, 238, 0.85); /* Кремовый фон с прозрачностью */
             -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             padding: 30px 35px; 
             border-radius: 4px;
-            border: 1px solid rgba(193, 162, 98, 0.5);
+            border: 1px solid rgba(11, 27, 58, 0.2);
             border-left: 4px solid var(--navy); 
-            box-shadow: 0 10px 30px rgba(29, 42, 64, 0.05);
+            box-shadow: 0 10px 30px rgba(11, 27, 58, 0.08);
         }
 
         .hero-text-block p { 
@@ -262,7 +264,7 @@
             border: 1px solid var(--navy); border-radius: 50%;
             font-size: 15px; transition: all 0.3s;
         }
-        .btn-outline:hover { background-color: var(--navy); border-color: var(--navy); color: var(--white); }
+        .btn-outline:hover { background-color: var(--navy); border-color: var(--navy); color: var(--text-white); }
 
         .hero-image-col {
             position: relative;
@@ -277,7 +279,7 @@
             max-width: 420px; 
             border-radius: 8px; 
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(29, 42, 64, 0.2); 
+            box-shadow: 0 20px 50px rgba(11, 27, 58, 0.25); 
         }
 
         .portrait-wrapper img {
@@ -292,13 +294,13 @@
         /* --- ПЛАШКА ПРЕИМУЩЕСТВ --- */
         .features-bar {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background-color: rgba(255, 255, 255, 0.85); 
+            background-color: rgba(248, 245, 238, 0.9); 
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             padding: 25px 5%;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 10; 
-            border-top: 1px solid rgba(193, 162, 98, 0.3);
+            border-top: 1px solid rgba(11, 27, 58, 0.2);
         }
 
         .feature-item { 
@@ -312,7 +314,7 @@
         }
         .feature-item::before {
             content: '⟶';
-            color: var(--accent);
+            color: var(--navy);
             font-family: sans-serif;
             font-weight: 300;
             font-size: 20px;
@@ -321,8 +323,8 @@
         /* --- СЕКЦИИ --- */
         .section-container {
             position: relative; z-index: 5; padding: 100px 40px;
-            background-color: var(--white); 
-            border-top: 1px solid rgba(193, 162, 98, 0.15);
+            background-color: var(--bg-main); /* Кремовый фон */
+            border-top: 1px solid rgba(11, 27, 58, 0.15);
         }
 
         .section-title {
@@ -343,14 +345,14 @@
             padding: 100px 20px;
             background-color: var(--navy); 
             text-align: center;
-            border-top: 1px solid rgba(193, 162, 98, 0.3);
-            border-bottom: 1px solid rgba(193, 162, 98, 0.3);
+            border-top: 1px solid rgba(11, 27, 58, 0.3);
+            border-bottom: 1px solid rgba(11, 27, 58, 0.3);
         }
 
         .slogan-text {
             font-family: var(--font-display);
             font-size: clamp(32px, 4.5vw, 64px);
-            color: var(--bg-warm);
+            color: var(--text-white); /* Белый текст */
             font-weight: 500;
             letter-spacing: 2px;
             line-height: 1.3;
@@ -385,7 +387,7 @@
             color: var(--text-dark);
             margin-bottom: 25px;
             padding-bottom: 25px;
-            border-bottom: 1px solid rgba(193, 162, 98, 0.3);
+            border-bottom: 1px solid rgba(11, 27, 58, 0.3);
         }
         
         .about-main p { 
@@ -396,12 +398,16 @@
             font-weight: 400;
         }
 
+        /* ЖЕЛТЫЙ БЛОК ОБРАЗОВАНИЯ */
         .about-achievements {
-            background: var(--bg-warm);
+            background: var(--bg-achievements); /* Цвет #D9BE85 */
             padding: 40px;
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(29, 42, 64, 0.03);
+            box-shadow: 0 10px 30px rgba(11, 27, 58, 0.05);
             border-top: 4px solid var(--navy);
+            border-left: 1px solid rgba(11, 27, 58, 0.1);
+            border-right: 1px solid rgba(11, 27, 58, 0.1);
+            border-bottom: 1px solid rgba(11, 27, 58, 0.1);
         }
 
         .about-achievements h4 {
@@ -420,8 +426,8 @@
             margin-bottom: 20px;
             font-size: 19px;
             line-height: 1.5;
-            color: var(--text-light);
-            font-weight: 400;
+            color: #0B1B3A; /* Темный текст на желтом фоне */
+            font-weight: 500;
         }
 
         .about-achievements li::before {
@@ -432,16 +438,16 @@
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background-color: var(--accent);
+            background-color: var(--navy);
         }
 
         .about-achievements a {
-            color: var(--accent);
+            color: var(--navy);
             text-decoration: underline;
             transition: color 0.3s;
-            font-weight: 500;
+            font-weight: 600;
         }
-        .about-achievements a:hover { color: var(--navy); }
+        .about-achievements a:hover { color: var(--accent-hover); }
 
         /* --- ПРАКТИКИ (3 КОЛОНКИ) --- */
         .services-grid { 
@@ -453,15 +459,16 @@
         }
 
         .service-card {
-            background-color: var(--bg-warm); 
+            background-color: var(--text-white); /* Белые карточки для контраста с кремовым фоном */
             padding: 35px; 
             border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(29, 42, 64, 0.02); 
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 40px rgba(11, 27, 58, 0.06); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
             opacity: 0; 
             transform: translateY(30px);
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(11, 27, 58, 0.05);
             border-top: 3px solid transparent;
         }
 
@@ -472,7 +479,7 @@
         
         .service-card:hover { 
             transform: translateY(-5px); 
-            box-shadow: 0 20px 50px rgba(29, 42, 64, 0.06);
+            box-shadow: 0 20px 50px rgba(11, 27, 58, 0.12);
             border-top: 3px solid var(--navy);
         }
         
@@ -498,7 +505,7 @@
         .sub-services {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(193, 162, 98, 0.2);
+            border-top: 1px solid rgba(11, 27, 58, 0.15);
         }
 
         .sub-services li {
@@ -516,7 +523,7 @@
             position: absolute;
             left: 0;
             top: 2px;
-            color: var(--accent);
+            color: var(--navy);
             font-family: sans-serif;
             font-weight: 300;
         }
@@ -524,7 +531,7 @@
         /* Подвал */
         footer { 
             background-color: var(--navy); 
-            color: var(--bg-warm); 
+            color: var(--text-white); /* Белый текст */
             padding: 80px 40px 120px; 
             text-align: center; 
             position: relative; 
@@ -533,12 +540,12 @@
         footer h3 { font-family: var(--font-display); font-size: 42px; margin-bottom: 20px; font-weight: 600; letter-spacing: 2px; }
         footer p { margin-bottom: 15px; font-size: 21px; opacity: 0.9; font-weight: 400; }
         footer a { font-weight: 500; color: var(--accent); font-size: 26px; transition: color 0.3s;}
-        footer a:hover { color: var(--bg-warm); }
+        footer a:hover { color: var(--text-white); }
 
         /* --- МОДАЛЬНОЕ ОКНО (ФОРМА) --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(29, 42, 64, 0.85); z-index: 1000;
+            background-color: rgba(11, 27, 58, 0.9); z-index: 1000;
             justify-content: center; align-items: center;
             opacity: 0; transition: opacity 0.3s ease;
             -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
@@ -547,7 +554,7 @@
         .modal-overlay.active { display: flex; opacity: 1; }
 
         .modal-content {
-            background-color: var(--bg-warm); padding: 50px; border-radius: 4px;
+            background-color: var(--bg-main); padding: 50px; border-radius: 4px;
             width: 90%; max-width: 500px; position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             transform: translateY(20px); transition: transform 0.3s ease;
@@ -566,25 +573,29 @@
 
         .modal-form input, .modal-form textarea {
             width: 100%; padding: 15px; margin-bottom: 8px; 
-            border: 1px solid rgba(193, 162, 98, 0.5); border-radius: 4px;
+            border: 1px solid rgba(11, 27, 58, 0.4); border-radius: 4px;
             font-family: var(--font-main); font-size: 19px; color: var(--navy);
-            background-color: rgba(255,255,255,0.7); transition: border-color 0.3s;
+            background-color: rgba(255, 255, 255, 0.7); transition: border-color 0.3s;
             -webkit-appearance: none; appearance: none; font-weight: 400;
+        }
+        
+        .modal-form input::placeholder, .modal-form textarea::placeholder {
+            color: rgba(11, 27, 58, 0.6);
         }
 
         .modal-form textarea { resize: none; }
-        .modal-form input:focus, .modal-form textarea:focus { outline: none; border-color: var(--navy); background-color: var(--white); }
+        .modal-form input:focus, .modal-form textarea:focus { outline: none; border-color: var(--navy); background-color: var(--text-white); }
 
         .input-error { color: #d32f2f; font-size: 15px; margin-bottom: 10px; display: none; text-align: left; padding-left: 5px; font-weight: 500; }
 
         .modal-form button {
-            width: 100%; padding: 18px; background-color: var(--navy); color: var(--white);
+            width: 100%; padding: 18px; background-color: var(--navy); color: var(--text-white);
             border: none; border-radius: 4px; font-size: 19px; font-weight: 600;
             cursor: pointer; transition: background-color 0.3s; margin-top: 15px;
             text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .modal-form button:hover { background-color: var(--accent); }
+        .modal-form button:hover { background-color: var(--accent); color: var(--navy); }
 
         .xss-error, .form-success { font-size: 17px; margin-bottom: 20px; display: none; text-align: center; padding: 12px; border-radius: 4px; font-weight: 500; }
         .xss-error { color: #d32f2f; background-color: #fdecea; border: 1px solid #f5c6cb; }
@@ -613,7 +624,7 @@
             }
 
             .hero-text-col { order: 2; align-self: center; width: 100%; max-width: 100%; padding-bottom: 40px; }
-            .hero-text-block { text-align: center; margin: 0 auto; border-left: 1px solid var(--accent); border-top: 4px solid var(--navy); padding: 30px; }
+            .hero-text-block { text-align: center; margin: 0 auto; border-left: 1px solid rgba(11, 27, 58, 0.2); border-top: 4px solid var(--navy); padding: 30px; }
             .hero-content-btn { justify-content: center; }
 
             .hero-image-col { order: 3; justify-content: center; width: 100%; margin-bottom: 40px; }
@@ -797,7 +808,7 @@
             <a href="javascript:void(0);" class="open-modal-btn" style="background-color: var(--accent); color: var(--navy); padding: 15px 35px; border-radius: 4px; font-size: 19px; font-weight: 600; display: inline-block; text-transform: uppercase; letter-spacing: 1.5px;">Запись на консультацию</a>
         </p>
         <p><a href="tel:+79053272909">+7 (905) 327-29-09</a></p>
-        <p><a href="mailto:info@durmanova-law.ru" style="font-size: 19px; opacity: 0.8; font-weight: 400;">durmanova.counsel@mail.ru</a></p>
+        <p><a href="mailto:info@durmanova-law.ru" style="font-size: 19px; opacity: 0.8; font-weight: 400;">info@durmanova-law.ru</a></p>
         <p><a href="https://t.me/edurmanova" target="_blank" style="font-size: 19px; opacity: 0.8; font-weight: 400;">t.me/edurmanova</a></p>
     </footer>
 
@@ -899,7 +910,7 @@
 
                 this.value = formatted;
                 phoneError.style.display = 'none';
-                this.style.borderColor = 'rgba(193, 162, 98, 0.5)';
+                this.style.borderColor = 'rgba(11, 27, 58, 0.4)';
             });
 
             const emailInput = document.getElementById('email-input');
@@ -910,7 +921,7 @@
                 const val = emailInput.value.trim();
                 if (!val) {
                     emailError.style.display = 'none';
-                    emailInput.style.borderColor = 'rgba(193, 162, 98, 0.5)';
+                    emailInput.style.borderColor = 'rgba(11, 27, 58, 0.4)';
                     return true; 
                 }
 
@@ -930,7 +941,7 @@
                     return false;
                 } else {
                     emailError.style.display = 'none';
-                    emailInput.style.borderColor = 'rgba(193, 162, 98, 0.5)';
+                    emailInput.style.borderColor = 'rgba(11, 27, 58, 0.4)';
                     return true;
                 }
             }
