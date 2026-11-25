@@ -11,16 +11,15 @@
     
     <style>
         :root {
-            /* НОВАЯ ПАЛИТРА */
-            --text-dark: #5D5B59;      /* Глубокий синий для текста */
-            --text-light: #363434;     /* Чуть более светлый синий для абзацев */
-            --accent: #C1A262;         /* Золотистый */
+            --text-dark: #0B1B3A;      
+            --text-light: #1D2A40;     
+            --accent: #C1A262;         
             --accent-hover: #A88B50;   
             
-            --bg-main: #F6F5E8;        /* Светло-кремовый со скриншота */
-            --bg-achievements: #D9BE85;/* Желтый для блока достижений */
-            --text-white: #FFFFFF;     /* Чистый белый */
-            --navy: #0B1B3A;           /* Глубокий синий */
+            --bg-main: #F8F5EE;        
+            --bg-achievements: #FFFFFF; 
+            --text-white: #FFFFFF;     
+            --navy: #0B1B3A;           
             
             --font-main: 'Cormorant Garamond', serif;
             --font-display: 'Cormorant Garamond', serif; 
@@ -97,7 +96,6 @@
         /* --- ШАПКА --- */
         header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             padding: 15px 60px; 
             position: -webkit-sticky; 
@@ -106,39 +104,20 @@
             z-index: 100;
             background-color: transparent; 
             transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
-            color: var(--text-white); /* Белый текст на фоне картинки */
+            color: var(--text-white); 
         }
 
         header.scrolled {
-            background-color: rgba(248, 245, 238, 0.95); /* Кремовый фон при скролле */
+            background-color: rgba(248, 245, 238, 0.95); 
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(11, 27, 58, 0.08); 
             padding: 10px 60px; 
-            color: var(--text-dark); /* Темный текст при скролле */
+            color: var(--text-dark); 
         }
 
-        .logo {
-            display: block;
-            border-radius: 4px;
-            overflow: hidden;
-            line-height: 0; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.4s ease;
-        }
-        .logo:hover {
-            transform: scale(1.02);
-        }
-
-        .logo img {
-            height: 50px; 
-            width: auto;
-            display: block;
-            transition: height 0.4s ease;
-        }
-        
-        header.scrolled .logo img {
-            height: 40px;
+        nav {
+            margin-right: 50px; 
         }
 
         nav ul { display: flex; gap: 40px; }
@@ -152,7 +131,12 @@
         }
         nav a:hover { color: var(--accent); } 
 
-        .header-contacts { display: flex; gap: 40px; align-items: center; }
+        .header-contacts { 
+            display: flex; 
+            gap: 40px; 
+            align-items: center;
+            margin-right: auto; 
+        }
         .contact-item { display: flex; flex-direction: column; }
         .contact-item a { 
             font-weight: 500; 
@@ -203,7 +187,7 @@
             font-family: var(--font-display);
             font-size: clamp(45px, 7vw, 130px); 
             line-height: 0.85;
-            color: var(--text-white); /* Белый текст */
+            color: var(--text-white); 
             text-transform: uppercase; 
             letter-spacing: 2px;
             z-index: 1;
@@ -223,7 +207,7 @@
         }
 
         .hero-text-block {
-            background: rgba(248, 245, 238, 0.85); /* Кремовый фон с прозрачностью */
+            background: rgba(248, 245, 238, 0.85);
             -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             padding: 30px 35px; 
@@ -238,7 +222,6 @@
             line-height: 1.35; 
             color: var(--text-dark); 
             font-weight: 500; 
-            font-style: italic; 
             margin-bottom: 12px;
         }
         
@@ -323,7 +306,7 @@
         /* --- СЕКЦИИ --- */
         .section-container {
             position: relative; z-index: 5; padding: 100px 40px;
-            background-color: var(--bg-main); /* Кремовый фон */
+            background-color: var(--bg-main); 
             border-top: 1px solid rgba(11, 27, 58, 0.15);
         }
 
@@ -342,23 +325,32 @@
         .slogan-section {
             position: relative;
             z-index: 5;
-            padding: 100px 20px;
+            padding: 60px 20px; 
             background-color: var(--navy); 
             text-align: center;
             border-top: 1px solid rgba(11, 27, 58, 0.3);
             border-bottom: 1px solid rgba(11, 27, 58, 0.3);
         }
 
+        .slogan-logo {
+            height: 110px; /* Увеличили логотип */
+            width: auto;
+            margin: 0 auto 20px auto;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
         .slogan-text {
             font-family: var(--font-display);
             font-size: clamp(32px, 4.5vw, 64px);
-            color: var(--text-white); /* Белый текст */
+            color: var(--text-white); 
             font-weight: 500;
             letter-spacing: 2px;
             line-height: 1.3;
             max-width: 1000px;
             margin: 0 auto;
-            font-style: italic;
+            font-style: italic; 
         }
 
         /* --- ПРОФИЛЬ --- */
@@ -383,11 +375,8 @@
             font-size: 24px;
             line-height: 1.6;
             font-weight: 500;
-            font-style: italic;
             color: var(--text-dark);
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid rgba(11, 27, 58, 0.3);
+            margin-bottom: 20px;
         }
         
         .about-main p { 
@@ -398,9 +387,9 @@
             font-weight: 400;
         }
 
-        /* ЖЕЛТЫЙ БЛОК ОБРАЗОВАНИЯ */
+        /* БЕЛЫЙ БЛОК ОБРАЗОВАНИЯ */
         .about-achievements {
-            background: var(--bg-achievements); /* Цвет #D9BE85 */
+            background: var(--bg-achievements); 
             padding: 40px;
             border-radius: 4px;
             box-shadow: 0 10px 30px rgba(11, 27, 58, 0.05);
@@ -413,7 +402,7 @@
         .about-achievements h4 {
             font-size: 24px;
             margin-bottom: 25px;
-            color: var(--navy);
+            color: #0B1B3A; 
             font-weight: 600;
             letter-spacing: 1px;
         }
@@ -426,7 +415,7 @@
             margin-bottom: 20px;
             font-size: 19px;
             line-height: 1.5;
-            color: #0B1B3A; /* Темный текст на желтом фоне */
+            color: #0B1B3A; 
             font-weight: 500;
         }
 
@@ -438,11 +427,11 @@
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background-color: var(--navy);
+            background-color: #0B1B3A;
         }
 
         .about-achievements a {
-            color: var(--navy);
+            color: #0B1B3A;
             text-decoration: underline;
             transition: color 0.3s;
             font-weight: 600;
@@ -456,10 +445,11 @@
             gap: 30px; 
             max-width: 1300px; 
             margin: 0 auto; 
+            align-items: stretch; /* Растягиваем карточки на одну высоту */
         }
 
         .service-card {
-            background-color: var(--text-white); /* Белые карточки для контраста с кремовым фоном */
+            background-color: var(--text-white); 
             padding: 35px; 
             border-radius: 4px;
             box-shadow: 0 10px 40px rgba(11, 27, 58, 0.06); 
@@ -483,29 +473,34 @@
             border-top: 3px solid var(--navy);
         }
         
+        /* ФИКС ВЫРАВНИВАНИЯ: Заголовки */
         .service-card h4 { 
-            font-size: 28px; 
-            margin-bottom: 10px; 
+            font-size: 26px; 
+            margin-bottom: 15px; 
             color: var(--navy); 
             font-weight: 600; 
             line-height: 1.2;
             letter-spacing: 1px;
+            min-height: 64px; /* Фиксируем высоту под 2 строки */
+            display: block; /* Текст начинается сверху */
         }
         
+        /* ФИКС ВЫРАВНИВАНИЯ: Описания */
         .service-card p { 
             font-size: 18px; 
             color: var(--text-light); 
             line-height: 1.5; 
-            margin-bottom: 25px;
-            flex-grow: 1; 
-            font-style: italic;
+            margin-bottom: 20px;
+            min-height: 55px; /* Фиксируем высоту под 2 строки */
+            font-style: italic; 
             font-weight: 400;
         }
 
         .sub-services {
-            margin-top: 20px;
+            margin-top: 0;
             padding-top: 20px;
             border-top: 1px solid rgba(11, 27, 58, 0.15);
+            flex-grow: 1; /* Позволяет списку занять оставшееся место, прижимая пустоту вниз */
         }
 
         .sub-services li {
@@ -531,7 +526,7 @@
         /* Подвал */
         footer { 
             background-color: var(--navy); 
-            color: var(--text-white); /* Белый текст */
+            color: var(--text-white); 
             padding: 80px 40px 120px; 
             text-align: center; 
             position: relative; 
@@ -569,7 +564,7 @@
         .close-btn:hover { color: var(--navy); }
 
         .modal-content h3 { font-family: var(--font-display); font-size: 34px; margin-bottom: 10px; color: var(--navy); text-align: center; font-weight: 600; }
-        .modal-content p { font-size: 19px; color: var(--text-light); text-align: center; margin-bottom: 30px; font-style: italic; }
+        .modal-content p { font-size: 19px; color: var(--text-light); text-align: center; margin-bottom: 30px; }
 
         .modal-form input, .modal-form textarea {
             width: 100%; padding: 15px; margin-bottom: 8px; 
@@ -611,6 +606,8 @@
             .hero-bg-text { font-size: clamp(35px, 5.5vw, 75px); } 
             .portrait-wrapper { max-width: 320px; }
             .header-contacts { display: none; }
+            nav { margin-right: 0; margin-left: auto; } 
+            .header-cta { margin-left: 30px; }
         }
 
         @media (max-width: 900px) {
@@ -635,11 +632,9 @@
             
             header { padding: 15px 20px; }
             header.scrolled { padding: 10px 20px; }
-            .logo img { height: 40px; }
-            header.scrolled .logo img { height: 35px; }
             section[id], footer[id] { scroll-margin-top: 70px; } 
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .slogan-section { padding: 60px 20px; }
+            .slogan-section { padding: 50px 20px; }
         }
 
         @media (max-width: 768px) {
@@ -653,6 +648,8 @@
             .modal-content { padding: 30px 20px; }
             .about-achievements { padding: 25px; }
             .services-grid { grid-template-columns: 1fr; }
+            .service-card h4 { min-height: auto; display: block; }
+            .service-card p { min-height: auto; }
         }
     </style>
 </head>
@@ -661,10 +658,6 @@
     <div class="bg-image"></div>
 
     <header id="main-header">
-        <a href="#" class="logo">
-            <img src="logo.jpg" alt="ED Logo">
-        </a>
-
         <nav>
             <ul>
                 <li><a href="#about">Профиль</a></li>
@@ -686,7 +679,7 @@
     </header>
 
     <main class="hero">
-        <div class="hero-bg-text">EKATERINA<br>DURMANOVA</div>
+        <div class="hero-bg-text">ЕКАТЕРИНА<br>ДУРМАНОВА</div>
         
         <div class="hero-text-col">
             <div class="hero-text-block">
@@ -749,7 +742,8 @@
     </section>
 
     <section class="slogan-section">
-        <h2 class="slogan-text">«Юридическая ясность для творческих решений»</h2>
+        <img src="logo.jpg" alt="ED Logo" class="slogan-logo">
+        <h2 class="slogan-text">Юридическая ясность для творческих решений</h2>
     </section>
 
     <section id="services" class="section-container">
@@ -808,7 +802,7 @@
             <a href="javascript:void(0);" class="open-modal-btn" style="background-color: var(--accent); color: var(--navy); padding: 15px 35px; border-radius: 4px; font-size: 19px; font-weight: 600; display: inline-block; text-transform: uppercase; letter-spacing: 1.5px;">Запись на консультацию</a>
         </p>
         <p><a href="tel:+79053272909">+7 (905) 327-29-09</a></p>
-        <p><a href="mailto:info@durmanova-law.ru" style="font-size: 19px; opacity: 0.8; font-weight: 400;">info@durmanova-law.ru</a></p>
+        <p><a href="mailto:durmanova.counsel@mail.ru" style="font-size: 19px; opacity: 0.8; font-weight: 400;">durmanova.counsel@mail.ru</a></p>
         <p><a href="https://t.me/edurmanova" target="_blank" style="font-size: 19px; opacity: 0.8; font-weight: 400;">t.me/edurmanova</a></p>
     </footer>
 
